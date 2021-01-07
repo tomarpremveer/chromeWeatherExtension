@@ -1,0 +1,21 @@
+{
+    "name": "Weather",
+    "description":"Weather extension for Chrome",
+    "version":"1",
+    "manifest_version":2,
+    "browser_action":{
+        "default_popup":"popup.html"
+    },
+    "background":{
+        "persistent":false,
+        "scripts":["background.js"]
+    },
+    "commands":{
+        "_execute_browser_action":{
+            "suggested_key":{
+                "default":"Ctrl+Shift+1"
+            },
+        "description":"Open Extension" 
+        }
+    }
+}
