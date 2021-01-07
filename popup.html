@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Document</title>
     <script src="background.js"></script>
+    
 </head>
+<style>
+  .container{
+    width: 200px;
+    height: 100px;
+  }
+  .header{
+    font-weight: bold;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
 <body>
-  <div id="container">
-    <div id="header">
+  <div class="container">
+    <div class="header">
       <p>Weather</p>
     </div>
     <div id="weatherContainer">
-
+      <div id="location">Kutubpur</div>
+      <div id="weather">Sunny</div>
     </div>
   </div>
 
