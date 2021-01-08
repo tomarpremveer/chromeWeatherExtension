@@ -1,7 +1,7 @@
-function getLocation() {
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     alert(position.coords.latitude);
-  //   });
-  // document.querySelector("#weather").innerHTML = "hi this is from script tag";
-}
-document.addEventListener("load", getLocation);
+chrome.runtime.onInstalled.addListener(function () {
+  navigator.geolocation.getCurrentPosition((position) => {
+    chrome.storage.sync.set({ location: location }, function () {
+      console.log("location is defined");
+    });
+  });
+});
