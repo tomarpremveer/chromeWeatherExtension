@@ -2,16 +2,15 @@ window.addEventListener("load", function () {
   document
     .getElementById("refreshButton")
     .addEventListener("click", function () {
-      let location = getLocation();
+      getPosition();
     });
 });
-function getLocation() {
-  var location;
-  navigator.geolocation.getCurrentPosition((position) => {
-    location = position;
-    chrome.storage.local.set({ location: location }, function () {
-      console.log("location is defined");
-    });
-  });
-  return location;
+function getPosition() {
+  navigator.geolocation.getCurrentPosition(getCoords);
 }
+function getCoords(position) {
+  document.getElementById("location").innerHTML = position.coords.latitude;
+}
+// chrome.storage.local.set({ location: location }, function () {
+//   console.log("location is defined");
+// });
