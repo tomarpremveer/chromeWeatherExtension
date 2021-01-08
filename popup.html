@@ -3,9 +3,7 @@
 <head>
     <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Document</title>
-    <script src="background.js"></script>
-    
+    <title>Document</title>    
 </head>
 <style>
   .container{
@@ -17,6 +15,13 @@
     font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
   }
+  img{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 2px 2px 2px 2px;
+  }
 </style>
 <body>
   <div class="container">
@@ -25,9 +30,13 @@
     </div>
     <div id="weatherContainer">
       <div id="location">Kutubpur</div>
-      <div id="weather">Sunny</div>
+      <div id="description">Sunny</div>
+      <img src="" alt="" id="image">
+    </div>
+    <div class="refreshButton">
+      <button id="refreshButton" value="">Refresh</button>
     </div>
   </div>
-
+  <script src="popup.js"></script>
 </body>
 </html>
