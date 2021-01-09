@@ -12,14 +12,14 @@ function getWeatherUpdates() {
   chrome.storage.sync.get("location", function (obj) {
     const { latitude: lat, longitude: long } = obj.location;
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=d1dda39918d5ab210e15f3f067c2a9d6`
+      `http://api.weatherstack.com/current?access_key=358fb2976bc7e40bd87572176e41fc1e&query=${lat},${long}`
     )
       .then((response) => response.json())
       .then((json) => {
         const elementsWithValue = {
-          image: `${json.weather[0].main}.png`,
-          location: json.name,
-          description: json.weather[0].description,
+          image: json.current.weather_icons[0],
+          location: json.location.name,
+          description: json.current.weather_descriptions[0],
         };
         updateElements(elementsWithValue);
       });
@@ -41,13 +41,23 @@ on the click of refresh button
 */
 function refreshPosition() {
   getCurrentPosition();
+  getWeatherUpdates();
 }
 /*
 Function to get the current Position of the user
 */
 function getCurrentPosition() {
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(getCoordinates);
+    navigator.geolocation.getCurrentPosition(
+      getCoordinates,
+      (err) => {
+        console.log(err);
+      },
+      {
+        maximumAge: 10000,
+        enableHighAccuracy: true,
+      }
+    );
   }
 }
 /*
