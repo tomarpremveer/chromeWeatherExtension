@@ -1,7 +1,6 @@
 chrome.runtime.onInstalled.addListener(function () {
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      console.log(position.coords.latitude, position.coords.longitude);
       chrome.storage.sync.set(
         {
           location: {

@@ -1,6 +1,8 @@
 window.addEventListener("load", function () {
+  /*
+  Call the getWeatherUpdate method on the window.onload event
+  */
   getWeatherUpdates();
-  //document.getElementById("location").innerHTML =Object.keys(obj).toString() || "No key";
   document
     .getElementById("refreshButton")
     .addEventListener("click", refreshPosition);
@@ -16,6 +18,12 @@ function getWeatherUpdates() {
     )
       .then((response) => response.json())
       .then((json) => {
+        // chrome.browserAction.setTitle(
+        //   { 32: json.current.weather_icons[0] },
+        //   () => {
+        //     console.log("icon inserted");
+        //   }
+        // );
         const elementsWithValue = {
           image: json.current.weather_icons[0],
           location: json.location.name,
@@ -48,16 +56,10 @@ Function to get the current Position of the user
 */
 function getCurrentPosition() {
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      getCoordinates,
-      (err) => {
-        console.log(err);
-      },
-      {
-        maximumAge: 10000,
-        enableHighAccuracy: true,
-      }
-    );
+    navigator.geolocation.getCurrentPosition(getCoordinates, errorCallback, {
+      maximumAge: 10000,
+      enableHighAccuracy: true,
+    });
   }
 }
 /*
@@ -82,3 +84,6 @@ function getCoordinates(position) {
 Function to run in case the navigator.geolocation fails
 This function is passed as the failed callback to `getCurrenPosition` function
 */
+function errorCallback(err) {
+  console.log(err);
+}
